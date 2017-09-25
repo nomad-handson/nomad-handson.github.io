@@ -1,0 +1,74 @@
+Authentication for API usage
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to use the **Encyclopedia API** service the user should
+authenticate first to get a token.
+
+The endpoint https://encyclopedia-api.nomad-coe.eu/v1.0/saml is used to
+authenticate the user with the identity provider and to get acccess to a
+token. ALWAYS a web browser should be used to access the mentioned URL.
+The user will be redirected to IdP service provider where the login take
+place. If the user doesn’t have an account yet, a new one can be created
+there, as well. After the user authentication with the IdP server is
+succesfull, the browser will redirect to
+https://encyclopedia-api.nomad-coe.eu/v1.0/saml/user/ where a few user
+details, including the access token can be found.
+
+Below there are a few screenshots which will guide you to the
+authentication process:
+
+Type the following URL in your browser:
+
+https://encyclopedia-api.nomad-coe.eu/v1.0/saml
+
+Here is the initial login window where the user can introduce their
+credentials, use a guest account or register for a new user account if
+you don't have one (for this tutorial you can just use the guest
+account):
+
+.. figure:: files/login.png
+   :alt: login
+
+The IdP server will store some information about the user and here the
+user should agree:
+
+.. figure:: files/information_release.png
+   :alt: information release
+
+After clicking "Accept" the new token is generated and send it to the
+user:
+
+.. figure:: files/token_api.png
+   :alt: token\_api
+
+The generated token will also have an expiration time embedded in it, it
+**will expire after 24 hours**, so, a new token (new user
+login/authentication) should be requested after this period of time.
+
+After the user is authenticated with the IdP server and the token is
+received, the token can be used to send requests to Encyclopedia API.
+
+Before starting the tutorial, here is some information about how to
+logout from our services:
+
+-  in your browser type the following URL:
+   https://encyclopedia-api.nomad-coe.eu/v1.0/saml/logout/ and you will
+   get a page where you can confirm the logout:
+
+.. figure:: files/logout_confirmation.png
+   :alt: logout confirmation
+
+-  after the logout is confirmed the user is logged out from NOMAD
+   services:
+
+.. figure:: files/logout_confirmed.png
+   :alt: logout confirmed
+
+After everybody knows how to login, get a new token and logout, here is
+a new link wich will be really useful during our tutorial:
+
+**Encyclopedia API Specifications/Documentation** is available here:
+https://encyclopedia-doc.nomad-coe.eu/
+
+The **Encyclopedia API URL** which we will use in our requests is
+https://encyclopedia-api.nomad-coe.eu/v1.0/
