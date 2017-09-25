@@ -1,0 +1,264 @@
+
+Encyclopedia API Tutorial
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to use the **Encyclopedia API** service the user should
+authenticate first and to get a token.
+
+The endpoint https://encyclopedia-api.nomad-coe.eu/v1.0/saml is used to
+authenticate the user with the identity provider and to get acccess to a
+token. ALWAYS a web browser should be used to access the mentioned URL.
+The user will be redirected to IdP service provider where the login take
+place. If the user doesn’t have an account yet, a new one can be created
+there, as well. After the user authentication with the IdP server is
+succesfull, the browser will redirect to
+https://encyclopedia-api.nomad-coe.eu/v1.0/saml/user/ where a few user
+details, including the access token can be found.
+
+Below there are a few screenshots which will guide you to the
+authentication process:
+
+Type the following URL in your browser:
+
+https://encyclopedia-api.nomad-coe.eu/v1.0/saml
+
+Here is the initial login window where the user can introduce their
+credentials, use a guest account or register for a new user account if
+you don't have one (for this tutorial you can just use the guest
+account):
+
+.. figure:: files/login.png
+   :alt: login
+
+   login
+The IdP server will store some information about the user and here the
+user should agree:
+
+.. figure:: files/information_release.png
+   :alt: information release
+
+   information release
+After clicking "Accept" the new token is generated and send it to the
+user:
+
+.. figure:: files/token_api.png
+   :alt: token\_api
+
+   token\_api
+The generated token will also have an expiration time embedded in it, it
+**will expire after 24 hours**, so, a new token (new user
+login/authentication) should be requested after this period of time.
+
+After the user is authenticated with the IdP server and the token is
+received, the token can be used to send requests to Encyclopedia API.
+
+Before starting the tutorial, here is some information about how to
+logout from our services:
+
+-  in your browser type the following URL:
+   https://encyclopedia-api.nomad-coe.eu/v1.0/saml/logout/ and you will
+   get a page where you can confirm the logout:
+
+.. figure:: files/logout_confirmation.png
+   :alt: logout confirmation
+
+   logout confirmation
+
+-  after the logout is confirmed the user is logged out from NOMAD
+   services:
+
+.. figure:: files/logout_confirmed.png
+   :alt: logout confirmed
+
+   logout confirmed
+After everybody knows how to login, get a new token and logout, here is
+a new link wich will be really useful during our tutorial:
+**Encyclopedia API Specifications/Documentation** is available here:
+https://encyclopedia-doc.nomad-coe.eu/
+
+The **Encyclopedia API URL** which we will use in our requests is
+https://encyclopedia-api.nomad-coe.eu/v1.0/
+
+.. code:: ipython3
+
+    import requests
+    import matplotlib.pyplot as plt
+    # import json
+    # import os
+
+.. code:: ipython3
+
+    # ENCYCLOPEDIA API URL
+    nomad_api_url ="https://encyclopedia-api.nomad-coe.eu/v1.0/materials"
+    
+    # ENCYCLOPEDIA API Token (this one should be valid for the SummerSchool2017 as well, no need to use a different one)
+    api_access_token ="eyJpYXQiOjE1MDQ3MTg2NTAsImFsZyI6IkhTMjU2IiwiZXhwIjoxNTA3MzEwNjUwfQ.eyJpZCI6InRlc3RfdG9rZW4ifQ.hiCIfi0bAW_O6CsMpQaTBzqUhpfu6VguVEudm9HV7Xs"
+    
+    #### SEARCH EXAMPLES ###
+    
+    # search for a material by element, Exclusive ON
+    # Note: this is the search used in order to get working the next steps for this tutorial. If you change 
+    # the search criteria then the rest of this tutorial should be changed as well (calc nr, material nr, ...) 
+    r = requests.post(nomad_api_url, auth=(api_access_token, ''), \
+                      json = {"search_by":{"element": "Ag", "exclusive": "1"}})
+    
+    # search for materials by element, Exclusive OFF
+    # r = requests.post(nomad_api_url, auth=(api_access_token, ''), \
+    #                   json = {"search_by":{"element": "Ag", "exclusive": "0"}})
+    
+    # get the second page of previous results with 5 results per page
+    # r = requests.post(nomad_api_url, auth=(api_access_token, ''), \
+    #                   json = {"search_by":{"element": "Ag", "exclusive": "1", "page": 2, "per_page": 5}})
+    
+    # search for materials using multiple elements
+    # r = requests.post(nomad_api_url, auth=(api_access_token, ''), \
+    #                   json = {"search_by":{"element": "Ti,O", "exclusive": "1"}})
+    
+    # search for materials using formula
+    # r = requests.post(nomad_api_url, auth=(api_access_token, ''), \
+    #                   json = {"search_by":{"formula": "Ac2Ag3", "exclusive": "1"}})
+    
+    # search can be done also by using specific properties in combination with elements/formula
+    # example: materials containing Ag and having DOS data
+    # r = requests.post(nomad_api_url, auth=(api_access_token, ''), \
+    #                   json = {"search_by":{"element": "Ag", "exclusive": "0"}, \
+    #                          "has_dos": "True"})
+
+.. code:: ipython3
+
+    # check the status code of the search command
+    r.status_code
+
+.. code:: ipython3
+
+    # check the results of our search
+    content = r.json()
+
+.. code:: ipython3
+
+    content
+
+.. code:: ipython3
+
+    # get the total number of results
+    content['total_results']
+
+.. code:: ipython3
+
+    # check the number of results by counting the entries in "results" list 
+    len(content['results'])
+
+.. code:: ipython3
+
+    # let's show the formula, reduced formula and the space_group for each material found
+    for material in content['results']:
+        print("formula:", material['formula'], "reduced formula:", material['formula_reduced'], "space_group: ", material['space_group'])
+
+.. code:: ipython3
+
+    # let's create a list with the available materials id
+    id_list =[]
+    for material in content['results']:
+        id_list.append(material['id'])
+    print(id_list)
+
+.. code:: ipython3
+
+    # get more properties for a specific material (for example: material_id 714)
+    material_714 = requests.get(nomad_api_url + "/714", auth=(api_access_token, ''))
+
+.. code:: ipython3
+
+    material_714.json()
+
+.. code:: ipython3
+
+    # get all calculations for a specific material (material_id 714)
+    material_714_calcs = requests.get("https://encyclopedia-api.nomad-coe.eu/v1.0/materials/714/calculations", auth=(api_access_token, ''))
+
+.. code:: ipython3
+
+    # show the available calculations for our material
+    calculations = material_714_calcs.json()
+    calculations
+
+.. code:: ipython3
+
+    # check how many calculations we have available for this specific material
+    calculations['total_results']
+
+.. code:: ipython3
+
+    # get the "id" and the "functional long name" property for the first calculation in our list
+    calculations['results'][0]['id']
+    calculations['results'][0]['functional_long_name']
+
+.. code:: ipython3
+
+    # request a specific property for one calculation, here for example we ask for "density of states" data
+    r = requests.get("https://encyclopedia-api.nomad-coe.eu/v1.0/materials/714/calculations/249498?property=dos", auth=(api_access_token, ''))
+
+.. code:: ipython3
+
+    # it is good from time to time to check the status returned by our HTTP request :)
+    r.status_code
+
+.. code:: ipython3
+
+    # get only the DOS data from previous request result
+    dos = r.json()
+
+.. code:: ipython3
+
+    # show the DOS data
+    dos
+
+.. code:: ipython3
+
+    # let's see what kind of data we have there
+    dos['dos'].keys()
+
+.. code:: ipython3
+
+    # get only the DOS energies
+    energies = dos['dos']['dos_energies']
+
+.. code:: ipython3
+
+    # show the DOS energies
+    energies
+
+.. code:: ipython3
+
+    # get the DOS values
+    values = dos['dos']['dos_values']
+
+.. code:: ipython3
+
+    # show the DOS values
+    values
+
+.. code:: ipython3
+
+    type(values)
+
+.. code:: ipython3
+
+    # show plots inline in notebook
+    %matplotlib inline
+
+.. code:: ipython3
+
+    # plotting things
+    plt.plot(values[0], energies, color="darkorange", linewidth=1.5)
+
+.. code:: ipython3
+
+    # rescale the energy values by atomic unit of charge: 1.602176565e-19 (C)
+    new_energy = [item/1.602176565e-19 for item in energies]
+
+.. code:: ipython3
+
+    # use the same range for energy axis as in GUI (to be able to check if we got a similar plot)
+    plt.ylim(-5, 12)
+    plt.plot(values[0], new_energy, color="darkorange", linewidth=1.54)

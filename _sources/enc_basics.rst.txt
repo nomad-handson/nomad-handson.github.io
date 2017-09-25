@@ -1,0 +1,42 @@
+Basic setup
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some of the tutorials use Jupyter notebooks.
+There are two ways of getting Jupyter: via plain Python or using the Anaconda Python distribution.
+(`see Jupyter web page <http://jupyter.org/install.html>`_)
+
+Plain Python
+------------
+
+Create and start a virtual environment and install Jupyter:
+
+   .. code:: bash
+
+       $ python3 -m venv <venv_name>
+       $ source <venv_name>/bin/activate
+       $ pip install jupyter
+
+
+Anaconda
+--------
+
+Create and start a virtual environment:
+
+   .. code:: bash
+
+       $ conda create -n <venv_name> python=<x.x> anaconda
+       $ source activate <venv_name>
+
+Jupyter already comes with Anaconda, thus does not need any additional installation.
+
+
+Start Jupyter
+-------------
+
+The Jupyter notebook environment is launched by
+
+   .. code:: bash
+
+       $ jupyter notebook <filename>
+
+where ``<filename>`` can also be omitted.

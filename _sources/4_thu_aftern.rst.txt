@@ -1,0 +1,22 @@
+------------------
+High-throughput Calculations & Data Quality
+------------------
+=========================================
+Thursday, 14:30 – 18:30
+=========================================
+
+
+The Atomic Simulation Environment and genetic algorithms
+--------------------------------------------------------------
+
+This tutorial gives an introduction to the genetic algorithm (GA) in the Atomic Simulation Environment (ASE)
+and how it can be used to facilitate high-throughput calculations.
+In the tutorial we will determine the convex hull of a binary metal slab and in the process get to know different variants of the GA,
+so that afterwards we will know how to best setup the GA for an optimization problem with a large phase space.
+
+`Link to tutorial <https://analytics-toolkit.nomad-coe.eu/home/>`_
+
+Tutorial on the genetic algorithm on the ASE website
+----------------------------------------------------
+
+`Tutorial on the GA implementation in ASE <https://wiki.fysik.dtu.dk/ase/dev/ase/ga.html#module-ase.ga>`_

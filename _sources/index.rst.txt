@@ -1,0 +1,24 @@
+NOMAD summer tuturials
+=================================
+
+.. note::
+
+    Since most hands-on sessions will be web-based, we advise the
+    participants to make an account on NOMAD to access the services within
+    a personal workspace, and keep their work after the NOMAD school. To
+    create an account go to https://analytics-toolkit.nomad-coe.eu/ and
+    click on the green "Login" in the gray bar.
+
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   :caption: Tutorial sessions:
+
+   Tuesday, 9:00 – 13:00 <2_tue_morning>
+   Tuesday, 14:30 – 18:30 <2_tue_aftern>
+   Wednesday, 9:00 – 13:00 <3_wed_morning>
+   Wednesday, 14:30 – 18:30 <3_wed_aftern>
+   Thursday, 9:00 – 13:00 <4_thu_morning>
+   Thursday, 14:30 – 18:30 <4_thu_aftern>
+   Friday, 9:00 – 13:00 <5_fri_morning>

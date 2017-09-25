@@ -1,0 +1,26 @@
+------------------
+Data Analytics I: Overview and Structure Prediction
+------------------
+=========================================
+Tuesday, 14:30 – 18:30
+=========================================
+
+
+Predicting energy differences between crystal structures: (Meta-)stability of octet-binary compounds
+------------------
+
+This tutorial shows how to find descriptive parameters (short formulas) that predict the crystal structure
+(here, rocksalt (RS), zincblende (ZB), CsCl, NiAs or CrB), using the example of octet binary compounds.
+It is based on the algorithm Sure Independence Screening followed by L0 minimization (SIS+L0),
+that enables to search for optimal descriptor by scanning huge feature spaces.
+
+`Link to the tutorial <https://analytics-toolkit.nomad-coe.eu/tutorial-SIS>`_
+
+
+Hands-on Workshop Density-Functional Theory and Beyond: Compressed sensing for identifying descriptors
+------------------
+
+Fully fledged tutorial for understanding both the methodology and the data stream of the first tutorial.
+
+
+`Link to the tutorial <https://analytics-toolkit.nomad-coe.eu/hands-on-cs>`_

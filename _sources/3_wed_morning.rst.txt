@@ -1,0 +1,17 @@
+------------------
+NOMAD Encyclopedia
+------------------
+=========================================
+Wednesday, 9:00 – 13:00
+=========================================
+
+.. toctree::
+   :maxdepth: 1
+
+   enc_basics
+   enc_api
+   enc_viewer
+
+The necesary files can be downloaded here:
+   - :download:`API IPython notebook and material <files/enc_api_tutorial.zip>`
+   - :download:`Material for the 3D viewer <files/enc_viewer_tutorial.zip>`

@@ -1,0 +1,26 @@
+------------------
+Data Analytics III: Materials Properties Prediction
+------------------
+=========================================
+Thursday, 9:00 – 13:00
+=========================================
+
+
+NOMAD - Subgroup Discovery Toolkit
+------------------
+
+Subgroup discovery (SGD) is a data mining technique that allows for the discovery of structure in data.
+It reveals subsets in a given dataset that have unusual or exceptional properties and characterizes such revealed subsets with a natural-language style description.
+
+`Link to the tutorial <https://analytics-toolkit.nomad-coe.eu/Creedo/index.htm>`_
+
+The face of crystals: Insightful Classification using Deep Learning
+------------------
+
+The main purpose of this tutorial is to enable users to interactively reproduce the main results of the manuscript
+
+A. Ziletti, D. Kumar, M. Scheffler, and L. M. Ghiringhelli: *The face of crystals: Insightful Classification using Deep Learning*.
+
+It is also possible to explore different settings, and thus create new results using the methodology introduced in the manuscript.
+
+`Link to the tutorial <https://analytics-toolkit.nomad-coe.eu/tutorial-face-of-crystals>`_
