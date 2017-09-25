@@ -9,9 +9,14 @@ Wednesday, 9:00 – 13:00
    :maxdepth: 1
 
    enc_basics
+   enc_login
    enc_api
    enc_viewer
 
 The necesary files can be downloaded here:
    - :download:`API IPython notebook and material <files/enc_api_tutorial.zip>`
    - :download:`Material for the 3D viewer <files/enc_viewer_tutorial.zip>`
+
+Crucial Links:
+   - Base-URL for the API: https://encyclopedia-api.nomad-coe.eu/v1.0/
+   - API documentation: https://encyclopedia-doc.nomad-coe.eu/

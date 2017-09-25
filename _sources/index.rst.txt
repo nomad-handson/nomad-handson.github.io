@@ -7,7 +7,8 @@ NOMAD summer tuturials
     participants to make an account on NOMAD to access the services within
     a personal workspace, and keep their work after the NOMAD school. To
     create an account go to https://analytics-toolkit.nomad-coe.eu/ and
-    click on the green "Login" in the gray bar.
+    click on the green "Login" in the gray bar, or follow the
+    :doc:`instructions in the API tutorial <enc_login>`.
 
 
 .. toctree::

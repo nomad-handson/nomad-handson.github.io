@@ -15,8 +15,8 @@ into third-party websites.
 
 Setup
 -----
-    1. Unzip the contents of structureviewer.zip to you local computer.
-    2. Open the index.html file on a web browser of your choice.
+    1. Unzip the contents of :download:`enc_viewer_tutorial.zip <files/enc_viewer_tutorial.zip>` to you local computer.
+    2. Open the ``index.html`` file on a web browser of your choice.
 
 You should already now see a default structure shown on the browser.
 
@@ -44,8 +44,8 @@ you can:
 
 Changing the Structure
 ----------------------
-Open the index.html in a text editor of your choice. Inside it you will see a
-<script> element at the bottom. This is where the visualization is set up.
+Open the ``index.html`` in a *text* editor of your choice. Inside it you will see a
+``<script>`` element at the bottom. This is where the visualization is set up.
 
 There are predefined examples that you can activate by changing the the
 variable name in the "viewer.load()"-function. The examples include:
