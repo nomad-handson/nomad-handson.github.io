@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Structure Visualization" href="enc_viewer.html" />
-    <link rel="prev" title="Basic setup" href="enc_basics.html" /> 
+    <link rel="prev" title="Authentication for API usage" href="enc_login.html" /> 
   </head>
   <body>
     <div class="header-wrapper" role="banner">
@@ -32,7 +32,7 @@
         <div class="headertitle"><a
           href="index.html">NOMAD summer tutorials 1.0.0 documentation</a></div>
         <div class="rel" role="navigation" aria-label="related navigation">
-          <a href="enc_basics.html" title="Basic setup"
+          <a href="enc_login.html" title="Authentication for API usage"
              accesskey="P">previous</a> |
           <a href="enc_viewer.html" title="Structure Visualization"
              accesskey="N">next</a> |
@@ -52,71 +52,6 @@
             
   <div class="section" id="encyclopedia-api-tutorial">
 <h1>Encyclopedia API Tutorial<a class="headerlink" href="#encyclopedia-api-tutorial" title="Permalink to this headline">¶</a></h1>
-<p>In order to use the <strong>Encyclopedia API</strong> service the user should
-authenticate first and to get a token.</p>
-<p>The endpoint <a class="reference external" href="https://encyclopedia-api.nomad-coe.eu/v1.0/saml">https://encyclopedia-api.nomad-coe.eu/v1.0/saml</a> is used to
-authenticate the user with the identity provider and to get acccess to a
-token. ALWAYS a web browser should be used to access the mentioned URL.
-The user will be redirected to IdP service provider where the login take
-place. If the user doesn’t have an account yet, a new one can be created
-there, as well. After the user authentication with the IdP server is
-succesfull, the browser will redirect to
-<a class="reference external" href="https://encyclopedia-api.nomad-coe.eu/v1.0/saml/user/">https://encyclopedia-api.nomad-coe.eu/v1.0/saml/user/</a> where a few user
-details, including the access token can be found.</p>
-<p>Below there are a few screenshots which will guide you to the
-authentication process:</p>
-<p>Type the following URL in your browser:</p>
-<p><a class="reference external" href="https://encyclopedia-api.nomad-coe.eu/v1.0/saml">https://encyclopedia-api.nomad-coe.eu/v1.0/saml</a></p>
-<p>Here is the initial login window where the user can introduce their
-credentials, use a guest account or register for a new user account if
-you don’t have one (for this tutorial you can just use the guest
-account):</p>
-<div class="figure" id="id1">
-<img alt="login" src="_images/login.png" />
-<p class="caption"><span class="caption-text">login</span></p>
-</div>
-<p>The IdP server will store some information about the user and here the
-user should agree:</p>
-<div class="figure" id="id2">
-<img alt="information release" src="_images/information_release.png" />
-<p class="caption"><span class="caption-text">information release</span></p>
-</div>
-<p>After clicking “Accept” the new token is generated and send it to the
-user:</p>
-<div class="figure" id="id3">
-<img alt="token\_api" src="_images/token_api.png" />
-<p class="caption"><span class="caption-text">token_api</span></p>
-</div>
-<p>The generated token will also have an expiration time embedded in it, it
-<strong>will expire after 24 hours</strong>, so, a new token (new user
-login/authentication) should be requested after this period of time.</p>
-<p>After the user is authenticated with the IdP server and the token is
-received, the token can be used to send requests to Encyclopedia API.</p>
-<p>Before starting the tutorial, here is some information about how to
-logout from our services:</p>
-<ul class="simple">
-<li>in your browser type the following URL:
-<a class="reference external" href="https://encyclopedia-api.nomad-coe.eu/v1.0/saml/logout/">https://encyclopedia-api.nomad-coe.eu/v1.0/saml/logout/</a> and you will
-get a page where you can confirm the logout:</li>
-</ul>
-<div class="figure" id="id4">
-<img alt="logout confirmation" src="_images/logout_confirmation.png" />
-<p class="caption"><span class="caption-text">logout confirmation</span></p>
-</div>
-<ul class="simple">
-<li>after the logout is confirmed the user is logged out from NOMAD
-services:</li>
-</ul>
-<div class="figure" id="id5">
-<img alt="logout confirmed" src="_images/logout_confirmed.png" />
-<p class="caption"><span class="caption-text">logout confirmed</span></p>
-</div>
-<p>After everybody knows how to login, get a new token and logout, here is
-a new link wich will be really useful during our tutorial:
-<strong>Encyclopedia API Specifications/Documentation</strong> is available here:
-<a class="reference external" href="https://encyclopedia-doc.nomad-coe.eu/">https://encyclopedia-doc.nomad-coe.eu/</a></p>
-<p>The <strong>Encyclopedia API URL</strong> which we will use in our requests is
-<a class="reference external" href="https://encyclopedia-api.nomad-coe.eu/v1.0/">https://encyclopedia-api.nomad-coe.eu/v1.0/</a></p>
 <div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1"># import json</span>
@@ -126,7 +61,7 @@ a new link wich will be really useful during our tutorial:
 <div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="c1"># ENCYCLOPEDIA API URL</span>
 <span class="n">nomad_api_url</span> <span class="o">=</span><span class="s2">&quot;https://encyclopedia-api.nomad-coe.eu/v1.0/materials&quot;</span>
 
-<span class="c1"># ENCYCLOPEDIA API Token (this one should be valid for the SummerSchool2017 as well, no need to use a different one)</span>
+<span class="c1"># ENCYCLOPEDIA API Token (this one is valid for the NOMAD summer, no need to use a different one)</span>
 <span class="n">api_access_token</span> <span class="o">=</span><span class="s2">&quot;eyJpYXQiOjE1MDQ3MTg2NTAsImFsZyI6IkhTMjU2IiwiZXhwIjoxNTA3MzEwNjUwfQ.eyJpZCI6InRlc3RfdG9rZW4ifQ.hiCIfi0bAW_O6CsMpQaTBzqUhpfu6VguVEudm9HV7Xs&quot;</span>
 
 <span class="c1">#### SEARCH EXAMPLES ###</span>
@@ -217,7 +152,7 @@ a new link wich will be really useful during our tutorial:
 </pre></div>
 </div>
 <div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="c1"># request a specific property for one calculation, here for example we ask for &quot;density of states&quot; data</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://encyclopedia-api.nomad-coe.eu/v1.0/materials/714/calculations/249498?property=dos&quot;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="n">api_access_token</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://encyclopedia-api.nomad-coe.eu/v1.0/materials/714/calculations/249502?property=dos&quot;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="n">api_access_token</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="c1"># it is good from time to time to check the status returned by our HTTP request :)</span>
@@ -259,17 +194,11 @@ a new link wich will be really useful during our tutorial:
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 </pre></div>
 </div>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="c1"># plotting things</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">energies</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
-</pre></div>
-</div>
 <div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="c1"># rescale the energy values by atomic unit of charge: 1.602176565e-19 (C)</span>
 <span class="n">new_energy</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">/</span><span class="mf">1.602176565e-19</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">energies</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="code ipython3 highlight-default"><div class="highlight"><pre><span></span><span class="c1"># use the same range for energy axis as in GUI (to be able to check if we got a similar plot)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_energy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.54</span><span class="p">)</span>
+
+<span class="c1"># plotting things</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">energies</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -310,7 +239,7 @@ a new link wich will be really useful during our tutorial:
       <div class="footer">
         <div class="left">
           <div role="navigation" aria-label="related navigaton">
-            <a href="enc_basics.html" title="Basic setup"
+            <a href="enc_login.html" title="Authentication for API usage"
               >previous</a> |
             <a href="enc_viewer.html" title="Structure Visualization"
               >next</a> |

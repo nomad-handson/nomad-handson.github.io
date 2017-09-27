@@ -12,10 +12,12 @@ Wednesday, 9:00 – 13:00
    enc_login
    enc_api
    enc_viewer
+   enc_exercises
 
 The necesary files can be downloaded here:
    - :download:`API IPython notebook and material <files/enc_api_tutorial.zip>`
    - :download:`Material for the 3D viewer <files/enc_viewer_tutorial.zip>`
+   - :download:`Exercise Javascript code <files/enc_viewer_data.js>`
 
 Crucial Links:
    - Base-URL for the API: https://encyclopedia-api.nomad-coe.eu/v1.0/

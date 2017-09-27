@@ -5,5 +5,11 @@ Data Analytics II: Cluster Expansion & Thermodynamics
 Wednesday, 14:30 – 18:30
 =========================================
 
+This tutorial shows how to predict the ground-state configurations of a binary alloy,
+starting from a set of ab-initio calculations for random distributions of the substituent species.
+This is achieved through a cluster expansion (CE) of the energy of mixing of the alloy and a configurational sampling.
+The system studied in this tutorial is the alloy Si\ :subscript:`1-x`\ Ge\ :subscript:`x`\ .
+The user can specify the parameters determining the quality of the CE and the configurational sampling.
+The tasks are performed with the cluster expansion package **CELL** - Cluster Expansion for large parent ceLLs.
 
-More information will be provided soon.
+`Link to the tutorial <https://analytics-toolkit.nomad-coe.eu/notebook-edit/data/shared/tutorials/clusterX.bkr>`_
